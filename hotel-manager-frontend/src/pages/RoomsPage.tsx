@@ -133,12 +133,12 @@ export default function RoomsPage() {
         // Show search results for specific room
         roomSearchQuery.isLoading ? <p>Searching...</p> : 
         roomSearchQuery.isError ? <p className="text-red-600">Room {roomNumber} not found</p> :
-        roomSearchQuery.data ? <RoomTable rooms={[roomSearchQuery.data]} onDelete={(n) => del.mutate(n)} /> :
+        roomSearchQuery.data ? <RoomTable rooms={[roomSearchQuery.data]} onDelete={(n) => del.mutate(n)} currentPage={0} pageSize={1} /> :
         null
       ) : (
         // Show regular room list with filters
         query.isLoading ? <p>Loading...</p> : query.isError ? <p className="text-red-600">Failed to load rooms</p> :
-        <RoomTable rooms={query.data!.content} onDelete={(n) => del.mutate(n)} />
+        <RoomTable rooms={query.data!.content} onDelete={(n) => del.mutate(n)} currentPage={page} pageSize={size} />
       )}
 
       {!roomNumber && (
