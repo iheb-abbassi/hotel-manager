@@ -8,7 +8,6 @@ export default function App() {
           <Link to="/" className="font-semibold text-lg">eXXellent Nights!</Link>
           <nav className="flex items-center gap-4 text-sm">
             <NavLink to="/" className={({isActive}) => isActive ? 'text-blue-600' : 'text-gray-600'}>Rooms</NavLink>
-            <NavLink to="/rooms/new" className={({isActive}) => isActive ? 'text-blue-600' : 'text-gray-600'}>Add Room</NavLink>
           </nav>
         </div>
       </header>

@@ -25,6 +25,7 @@ export default function RoomTable({ rooms, onDelete }: {
               <td className="px-4 py-2">{r.hasMinibar ? 'Yes' : 'No'}</td>
               <td className="px-4 py-2">{r.available ? 'Yes' : 'No'}</td>
               <td className="px-4 py-2 text-right space-x-2">
+                <Link to={`/rooms/${r.number}`} className="text-green-600 hover:underline">View</Link>
                 <Link to={`/rooms/${r.number}/edit`} className="text-blue-600 hover:underline">Edit</Link>
                 <button onClick={() => onDelete(r.number)} className="text-red-600 hover:underline">Delete</button>
               </td>
