@@ -20,6 +20,7 @@ public final class RoomMapper {
     e.setType(dto.type());
     e.setHasMinibar(dto.hasMinibar());
     e.setAvailable(dto.available());
+    e.setNumber(dto.number());
   }
 
   public static RoomDTO makeRoomDTO(RoomDO e) {

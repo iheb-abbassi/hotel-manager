@@ -2,7 +2,7 @@
 
 Full-featured frontend for the Hotel Manager backend.
 
-## Features
+## 🚀 Features
 - Rooms list with filters (type, minibar, available) + pagination
 - Create/Edit/Delete rooms
 - React Query for data fetching & cache (with Devtools)
@@ -10,11 +10,14 @@ Full-featured frontend for the Hotel Manager backend.
 - React Router for navigation
 - TailwindCSS for styling
 
-## Run
+
+## ▶️ Getting Started
 ```bash
-npm ci
-cp .env.example .env   # optional
+cd hotel-manager-frontend
+npm install
 npm run dev
 # open http://localhost:5173
 ```
-Backend must be available at `VITE_API_BASE_URL` (default `http://localhost:8080`).
+## 📦 Deployment
+- Hosted on Vercel (auto-deploy from `main`).
+- Environment variable: `VITE_API_URL` → backend API URL.
