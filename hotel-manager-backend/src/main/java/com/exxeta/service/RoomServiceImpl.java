@@ -39,6 +39,12 @@ public class RoomServiceImpl implements RoomService {
   @Override @Transactional
   public RoomDTO update(int number, RoomDTO req) {
     RoomDO e = repo.findByNumber(number).orElseThrow(() -> new NotFoundException("Room " + number + " not found"));
+    // Prevent updating to an existing room number
+    if (req.number() != number) {
+      repo.findByNumber(req.number()).ifPresent(existing -> {
+        throw new IllegalArgumentException("Room number " + req.number() + " already exists");
+      });
+    }
     RoomMapper.apply(req, e);
     return RoomMapper.makeRoomDTO(repo.save(e));
   }

@@ -125,4 +125,20 @@ class RoomServiceImplTest {
         verify(repo).save(existing);
         assertThat(existing.getDeletedAt()).isNotNull();
     }
+
+    @Test
+    @DisplayName("Throws exception when updating room number to an existing one")
+    void update_throwsExceptionWhenRoomNumberExists() {
+
+        RoomDO existingRoom = createRoomDO(101, RoomType.DOUBLE, true, true);
+        RoomDO otherRoom = createRoomDO(102, RoomType.SINGLE, false, true);
+        RoomDTO updateRequest = createRoomDTO(102, RoomType.DOUBLE, true, true); // Try to update 101 to 102
+
+        when(repo.findByNumber(101)).thenReturn(Optional.of(existingRoom));
+        when(repo.findByNumber(102)).thenReturn(Optional.of(otherRoom));
+
+        assertThatThrownBy(() -> service.update(101, updateRequest))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining("Room number 102 already exists");
+    }
 }
