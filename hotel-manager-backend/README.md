@@ -1,7 +1,6 @@
-# eXXellent Nights! — Hotel Manager (Backend)
+# Hotel Manager – Backend
 
-Spring Boot backend for managing hotel rooms at **eXXellent Nights!**  
-Includes CRUD, filtering, **soft delete**, Swagger docs, seed data, and Docker setup.
+Spring Boot REST API for Hotel Manager.
 
 ## ✨ Features
 - Manage rooms (create, read by number, update, delete **soft**)
@@ -13,26 +12,16 @@ Includes CRUD, filtering, **soft delete**, Swagger docs, seed data, and Docker s
 - Flyway migration, clean layered architecture
 - Docker Compose for one-command run (Postgres + app)
 
-## 🧱 Stack
-- Java 21, Spring Boot 3 (Web, Validation, Data JPA, Actuator)
-- PostgreSQL 16, Flyway
-- springdoc-openapi
-- JUnit 5
+## 🚀 Tech Stack
+- Java 21
+- Spring Boot 3
+- PostgreSQL
+- JPA + Hibernate
+- Swagger / OpenAPI
+- JUnit 5 + Mockito
+- Flyway migrations
 
-## 📦 Package layout
-```
-com.freenow
-├─ config/             # OpenAPI config, seeders
-├─ controller/         # REST endpoints
-│  └─ mapper/          # RoomMapper (DTO<->DO)
-├─ dataaccessobject/   # RoomRepository (Spring Data)
-├─ datatransferobject/ # RoomDTO (single DTO)
-├─ domainobject/       # RoomDO (JPA entity with soft delete)
-├─ domainvalue/        # RoomType enum
-├─ exception/          # Global error handling, NotFound
-├─ service/            # RoomService, RoomServiceImpl
-└─ util/               # (reserved)
-```
+
 
 ## 🗄 Database schema
 - Table name: **`room`** (singular)
