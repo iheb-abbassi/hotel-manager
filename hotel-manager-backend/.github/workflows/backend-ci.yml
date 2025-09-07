@@ -12,6 +12,10 @@ on:
       - 'hotel-manager-backend/**'
       - '.github/workflows/backend-ci.yml'
 
+concurrency:
+  group: backend-ci-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   test-build:
     runs-on: ubuntu-latest
