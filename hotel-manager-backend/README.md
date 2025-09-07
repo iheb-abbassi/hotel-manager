@@ -5,7 +5,6 @@ Spring Boot REST API for Hotel Manager.
 ## ✨ Features
 - Manage rooms (create, read by number, update, delete **soft**)
 - List rooms with optional filters (type, minibar, availability) — pagination-ready
-- Soft delete with `deleted` flag and `deleted_at` timestamp
 - Swagger/OpenAPI at `/swagger-ui.html`
 - Dev/test data seeder (3 rooms on boot)
 
