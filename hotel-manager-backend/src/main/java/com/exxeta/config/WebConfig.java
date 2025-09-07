@@ -13,10 +13,12 @@ public class WebConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("http://localhost:5173")
+                        // allow local dev + any Vercel subdomain (or list your exact one)
+                        .allowedOriginPatterns("http://localhost:5173", "https://*.vercel.app")
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
-                        .allowCredentials(true);
+                        .allowCredentials(false)  // set true only if you actually use cookies/auth
+                        .maxAge(3600);
             }
         };
     }
