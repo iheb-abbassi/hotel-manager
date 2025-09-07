@@ -3,6 +3,7 @@ package com.exxeta.service;
 import com.exxeta.controller.mapper.RoomMapper;
 import com.exxeta.dataaccessobject.RoomRepository;
 import com.exxeta.datatransferobject.RoomDTO;
+import com.exxeta.datatransferobject.RoomPatchDTO;
 import com.exxeta.domainobject.RoomDO;
 import com.exxeta.domainvalue.RoomType;
 import com.exxeta.exception.NotFoundException;
@@ -12,6 +13,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+/**
+ * Service class for managing hotel rooms.
+ * Provides CRUD operations and filtering functionality.
+ *
+ * Design decisions:
+ * - Uses soft delete (flagging records instead of removing them).
+ * - Maps between RoomDO (entity) and RoomDTO (API object) via RoomMapper.
+ */
 @Service
 @RequiredArgsConstructor
 public class RoomServiceImpl implements RoomService {
@@ -49,6 +58,15 @@ public class RoomServiceImpl implements RoomService {
       });
     }
     RoomMapper.apply(req, e);
+    return RoomMapper.makeRoomDTO(repo.save(e));
+  }
+
+  @Override @Transactional
+  public RoomDTO patch(int number, RoomPatchDTO req) {
+    RoomDO e = repo.findByNumber(number).orElseThrow(() -> new NotFoundException("Room " + number + " not found"));
+    if (req.hasMinibar() != null) {
+      e.setHasMinibar(req.hasMinibar());
+    }
     return RoomMapper.makeRoomDTO(repo.save(e));
   }
 

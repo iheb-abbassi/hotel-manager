@@ -1,6 +1,7 @@
 package com.exxeta.controller;
 
 import com.exxeta.datatransferobject.RoomDTO;
+import com.exxeta.datatransferobject.RoomPatchDTO;
 import com.exxeta.domainvalue.RoomType;
 import com.exxeta.service.RoomService;
 import jakarta.validation.Valid;
@@ -10,6 +11,14 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+/**
+ * REST controller for hotel rooms.
+ * Exposes CRUD and filtering endpoints.
+ */
+
+// TODO: Add authentication with JWT
+// For now, all endpoints are open for demo purposes
 
 @RestController
 @RequestMapping("/api/rooms")
@@ -41,6 +50,11 @@ public class RoomController {
   @PutMapping("/{number}")
   public RoomDTO update(@PathVariable("number") int number, @Valid @RequestBody RoomDTO req) {
     return service.update(number, req);
+  }
+
+  @PatchMapping("/{number}")
+  public RoomDTO patch(@PathVariable("number") int number, @RequestBody RoomPatchDTO req) {
+    return service.patch(number, req);
   }
 
   @DeleteMapping("/{number}")

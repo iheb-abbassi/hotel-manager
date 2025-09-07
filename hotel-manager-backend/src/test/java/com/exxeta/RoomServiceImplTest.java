@@ -2,6 +2,7 @@ package com.exxeta;
 
 import com.exxeta.dataaccessobject.RoomRepository;
 import com.exxeta.datatransferobject.RoomDTO;
+import com.exxeta.datatransferobject.RoomPatchDTO;
 import com.exxeta.domainobject.RoomDO;
 import com.exxeta.domainvalue.RoomType;
 import com.exxeta.exception.NotFoundException;
@@ -155,5 +156,22 @@ class RoomServiceImplTest {
             .hasMessageContaining("Room number " + duplicateNumber + " already exists");
 
         verify(repo, never()).save(any());
+    }
+
+    @Test
+    @DisplayName("Updates only hasMinibar field with patch")
+    void patch_updatesOnlyHasMinibar() {
+        RoomDO existing = createRoomDO(606, RoomType.SUITE, false, true);
+        when(repo.findByNumber(606)).thenReturn(Optional.of(existing));
+        RoomDO persisted = createRoomDO(606, RoomType.SUITE, true, true);
+        when(repo.save(any(RoomDO.class))).thenReturn(persisted);
+        RoomPatchDTO patch = new RoomPatchDTO(true);
+        RoomDTO response = service.patch(606, patch);
+        verify(repo).save(existing);
+        assertThat(existing.isHasMinibar()).isTrue();
+        assertThat(existing.getType()).isEqualTo(RoomType.SUITE);
+        assertThat(existing.isAvailable()).isTrue();
+        assertThat(response.hasMinibar()).isTrue();
+        assertThat(response.number()).isEqualTo(606);
     }
 }
