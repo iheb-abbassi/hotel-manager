@@ -1,5 +1,16 @@
 name: frontend-ci
-on: [push, pull_request]
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'hotel-manager-frontend/**'
+      - '.github/workflows/frontend-ci.yml'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'hotel-manager-frontend/**'
+      - '.github/workflows/frontend-ci.yml'
 
 jobs:
   build:
