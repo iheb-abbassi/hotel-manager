@@ -11,14 +11,6 @@ Built with **React + Vite (frontend)** and **Spring Boot + PostgreSQL (backend)*
 - CI/CD with GitHub Actions
 - Deployed on Render (BE) + Vercel (FE)
 
-## 🏗 Project Structure
-```
-hotel-manager/
-  ├── hotel-manager-frontend/   # React + Vite app
-  ├── hotel-manager-backend/    # Spring Boot API
-  └── docs/                     # ADRs, architecture diagrams
-```
-
 ## 🚀 Live Demo
 
 - **Frontend (Vercel)**: [https://hotel-manager-pi.vercel.app](https://hotel-manager-pi.vercel.app)
