@@ -17,7 +17,7 @@ public class WebConfig {
                         .allowedOriginPatterns("http://localhost:5173", "https://*.vercel.app")
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
-                        .allowCredentials(false)  // set true only if you actually use cookies/auth
+                        .allowCredentials(false)
                         .maxAge(3600);
             }
         };

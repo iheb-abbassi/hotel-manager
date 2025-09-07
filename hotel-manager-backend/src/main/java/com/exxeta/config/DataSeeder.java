@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
+// Seeds the database with initial Room data for development and test profiles
 @Configuration
 public class DataSeeder {
 
