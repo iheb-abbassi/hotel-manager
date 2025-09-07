@@ -18,6 +18,4 @@ npm install
 npm run dev
 # open http://localhost:5173
 ```
-## 📦 Deployment
-- Hosted on Vercel (auto-deploy from `main`).
-- Environment variable: `VITE_API_URL` → backend API URL.
+
