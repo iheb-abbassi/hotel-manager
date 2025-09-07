@@ -141,4 +141,19 @@ class RoomServiceImplTest {
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining("Room number 102 already exists");
     }
+
+    @Test
+    @DisplayName("Throws exception when creating a room with an existing number")
+    void create_throwsExceptionIfRoomNumberExists() {
+        int duplicateNumber = 101;
+        RoomDTO newRoom = createRoomDTO(duplicateNumber, RoomType.DOUBLE, true, true);
+        RoomDO existingRoom = createRoomDO(duplicateNumber, RoomType.DOUBLE, true, true);
+        when(repo.findByNumber(duplicateNumber)).thenReturn(Optional.of(existingRoom));
+
+        assertThatThrownBy(() -> service.create(newRoom))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining("Room number " + duplicateNumber + " already exists");
+
+        verify(repo, never()).save(any());
+    }
 }

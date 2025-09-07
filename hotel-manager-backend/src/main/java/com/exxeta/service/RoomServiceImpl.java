@@ -32,6 +32,9 @@ public class RoomServiceImpl implements RoomService {
 
   @Override @Transactional
   public RoomDTO create(RoomDTO req) {
+    repo.findByNumber(req.number()).ifPresent(existing -> {
+      throw new IllegalArgumentException("Room number " + req.number() + " already exists");
+    });
     RoomDO e = RoomMapper.makeRoomDO(req);
     return RoomMapper.makeRoomDTO(repo.save(e));
   }
