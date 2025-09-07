@@ -19,6 +19,13 @@ hotel-manager/
   └── docs/                     # ADRs, architecture diagrams
 ```
 
+## 🚀 Live Demo
+
+- **Frontend (Vercel)**: [https://hotel-manager-pi.vercel.app](https://hotel-manager-pi.vercel.app)
+- **Backend API (Render)**: [https://hotel-manager-wtan.onrender.com/swagger-ui.html](https://hotel-manager-wtan.onrender.com/swagger-ui.html)
+
+---
+
 ### Backend
 ```bash
 cd hotel-manager-backend
